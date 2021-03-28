@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>RECAST</title>
+  <style type="text/css">
+
+  select {
+  width: 100%;
+  margin-bottom: 10px;
+  background: rgba(255,0,0,0.3);
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 13px;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 4px;
+  box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+  -webkit-transition: box-shadow .5s ease;
+  -moz-transition: box-shadow .5s ease;
+  -o-transition: box-shadow .5s ease;
+  -ms-transition: box-shadow .5s ease;
+  transition: box-shadow .5s ease;
+}
+
+select
+:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+
+</style>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+ <div class="login">
+  <h1>RECAST</h1>
+     <h3> Enter the following values to predict the property renting price</h3>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+     
+      
+    <div class="select">
+  <select name="slct" id="slct">
+    <option selected disabled>Property Type</option>
+    <option value="1">Condominium</option>
+    <option value="0">Apartment</option>
+  </select>
+</div>
+    <input type="text" name="area" placeholder="Living Area" required="required" />
+    <input type="text" name="bath" placeholder="Number of bathroom" required="required" />
+    <div class="select">
+  <select name="slct 1" id="slct 1">
+    <option selected disabled>Pool</option>
+    <option value="1">Yes</option>
+    <option value="0">No</option>
+  </select>
+</div>
+
+        <button type="submit" class="btn">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
